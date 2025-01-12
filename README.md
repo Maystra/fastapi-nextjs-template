@@ -79,3 +79,7 @@ docker compose up -f docker-compose.dev.yml -d
 - SSH_PASSWORD - password for logging in to remote server.
 
 If you want CI/CD for both dev and prod stands you should place 2 folders in /root folder with names {REPOSITORY_NAME} and {REPOSITORY_NAME}_dev so CI/CD finds it automatically. You can also change folders manually in workflows configuration.
+
+### What's missing
+-Backend unit/integration tests
+-Frontend e2e tests
