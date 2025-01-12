@@ -1,6 +1,7 @@
 # FastAPI + Next.js project template
 
-This project is a web application built with FastAPI and Next.js. It features localization, authorization, OAuth2, database migrations with Alembic, and a modern UI using NextUI. The project also leverages TanStack Query for data fetching and Zustand for state management. The application is containerized using Docker and Docker Compose for easy deployment.
+This project is a template web application built with FastAPI and Next.js that have all essentials for non-commercial project. It doesn't pretent to be the best way to create web applications, but just my preferred way to go :)
+It features localization, authorization, OAuth2, database migrations with Alembic, and a modern UI using NextUI. The project also leverages TanStack Query for data fetching and Zustand for state management. The application is containerized using Docker and Docker Compose for easy deployment.
 
 ## Features
 
@@ -39,7 +40,7 @@ cd fastapi-nextjs-template
 
 2. Create a .env file in the backend and frontend directories with the necessary environment variables.
 
-- Backend:
+- Create .env file in /backend folder:
 
 ```
 ENVIRONMENT=dev
@@ -53,14 +54,15 @@ DISCORD_OAUTH_CLIENT_SECRET=AbCdEfGhIjKlMnOpQrStUvWxYz123456
 FRONTEND_URL=http://localhost:3000
 ```
 
-- Frontend:
+- Create .env file in /frontend folder:
 
 ```
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```
 3. Configure domains (for backend and frontend) in docker compose files. You will also need to add entry in your DNS to link domain to your remote server.
 
-3. Build and start the Docker Compose containers:
+4. Build and start the Docker Compose containers:
+
 -Prod stand:
 ```
 docker compose up -f docker-compose.yml -d
@@ -70,7 +72,7 @@ docker compose up -f docker-compose.yml -d
 docker compose up -f docker-compose.dev.yml -d
 ```
 5. Open your browser and navigate to http://localhost:3000 for the frontend and http://localhost:8000 for the backend API.
-6. (Optional) If you will need GitHub Actions, you should configure Variables and secrets and provide:
+6. (Optional) If you will need GitHub Actions, you should configure Secrets and provide:
 - SSH_HOST - IP of remote server where your app will be running.
 - SSH_USER - username for logging in to remote server.
 - SSH_PASSWORD - password for logging in to remote server.
