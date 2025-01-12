@@ -1,0 +1,61 @@
+services:
+  postgres-prod:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - pgdata-prod:/var/lib/postgresql/data
+    networks:
+      - traefik-net
+    ports:
+      - "5433:5432"
+
+  frontend-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+    restart: always
+    env_file:
+      - ./frontend/.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend-prod.rule=Host(`cryptic-project.su`)"
+      - "traefik.http.routers.frontend-prod.entrypoints=websecure"
+      - "traefik.http.services.frontend-prod.loadbalancer.server.port=3000"
+      - "traefik.http.routers.frontend-prod.tls.certresolver=myresolver"
+      - "traefik.docker.network=traefik-net"
+    depends_on:
+      - backend-prod
+    networks:
+      - traefik-net
+
+  backend-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend-prod.rule=Host(`api.cryptic-project.su`)"
+      - "traefik.http.routers.backend-prod.entrypoints=websecure"
+      - "traefik.http.services.backend-prod.loadbalancer.server.port=8000"
+      - "traefik.http.routers.backend-prod.tls.certresolver=myresolver"
+      - "traefik.docker.network=traefik-net"
+    depends_on:
+      - postgres-prod
+    env_file:
+      - ./backend/.env
+    networks:
+      - traefik-net
+
+networks:
+  traefik-net:
+    name: traefik-net
+    driver: bridge
+
+volumes:
+  letsencrypt:
+  pgdata-prod:

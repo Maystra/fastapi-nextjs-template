@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	height: auto; /* TODO: эта строчка ломает navbar! */
+	margin: 0;
+	padding: 0;
+}
+
+body > div {
+	height: 100%;
+}
+
+body > div > div,
+body > div > div > div {
+	height: 100%;
+}
+
+body::-webkit-scrollbar {
+	width: 12px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	background: #1a1919; /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #a38343; /* color of the scroll thumb */
+	border-radius: 20px; /* roundness of the scroll thumb */
+	border: 3px solid #1a1919; /* creates padding around scroll thumb */
+}
+
+::selection {
+	background-color: #7a6232;
+}

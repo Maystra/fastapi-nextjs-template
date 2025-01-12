@@ -1,0 +1,100 @@
+services:
+  traefik:
+    image: traefik:v3.2
+    command:
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      # Редирект с http на https
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      # TLS
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=maystra.dev@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--log.level=DEBUG"
+      - "--api.dashboard=true"
+      - "--providers.docker.network=traefik-net"
+      - "--accesslog=true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "letsencrypt:/letsencrypt"
+    networks:
+      - traefik-net
+    labels:
+      # whitelist по IP для dev стенда
+      - "traefik.http.middlewares.ipwhitelist-dev.ipwhitelist.sourcerange=108.174.61.160/32"
+      # dashboard
+      - "traefik.http.routers.traefik.rule=Host(`traefik.cryptic-project.su`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls.certresolver=myresolver"
+      - "traefik.http.routers.traefik.middlewares=ipwhitelist-dev"
+
+  postgres-dev:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - pgdata-dev:/var/lib/postgresql/data
+    networks:
+      - traefik-net
+    ports:
+      - "5432:5432"
+
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+    restart: always
+    env_file:
+      - ./frontend/.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend-dev.rule=Host(`dev.cryptic-project.su`)"
+      - "traefik.http.routers.frontend-dev.entrypoints=websecure"
+      - "traefik.http.services.frontend-dev.loadbalancer.server.port=3000"
+      - "traefik.http.routers.frontend-dev.tls.certresolver=myresolver"
+      - "traefik.http.routers.frontend-dev.middlewares=ipwhitelist-dev"
+      - "traefik.docker.network=traefik-net"
+    depends_on:
+      - backend-dev
+    networks:
+      - traefik-net
+
+  backend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend-dev.rule=Host(`api.dev.cryptic-project.su`)"
+      - "traefik.http.routers.backend-dev.entrypoints=websecure"
+      - "traefik.http.services.backend-dev.loadbalancer.server.port=8000"
+      - "traefik.http.routers.backend-dev.tls.certresolver=myresolver"
+      - "traefik.http.routers.backend-dev.middlewares=ipwhitelist-dev"
+      - "traefik.docker.network=traefik-net"
+    networks:
+      - traefik-net
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - postgres-dev
+
+networks:
+  traefik-net:
+    external: true
+  monitoring:
+    external: true
+
+volumes:
+  letsencrypt:
+  pgdata-dev:

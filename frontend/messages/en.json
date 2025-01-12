@@ -1,0 +1,74 @@
+{
+	"TabNames": {
+		"project_name": "Cryptic Project",
+		"character_page": "Character",
+		"map_page": "Map",
+		"trade_page": "Trade",
+		"leaderboard_page": "Leaderboard"
+	},
+	"Navbar": {
+		"home": "Home",
+		"character": "Character",
+		"map": "Map",
+		"trade": "Trade",
+		"leaderboard": "Leaderboard",
+		"login_button": "Login",
+		"register_button": "Register",
+		"language_button": "Language",
+		"logout_button": "Logout"
+	},
+	"Metadata": {
+		"description": "Cryptic Project is a global browser game in the Idle RPG genre about survival in an abandoned city. Cryptic Project is a real-time game where you have to develop your character, collect items and fight other players. Become an explorer, a warrior, a trader - all paths are open to you: unique characters, many items and places to explore. Collecting and selling items. Raids in PvP and PvE, strategy and tactics. Own development strategies, millions of options for action. Developed game economy and trading system, unlimited pumping levels.",
+		"keywords": "Cryptic Project, crypto, online game, survival, rpg, idle, browser, free, no download, 2024, character leveling, looting, item collection, raids, pvp, pve, post-Soviet devastation, weapons, abandoned buildings, stalker, abandoned city, monsters, characters, trade, inventory, leaderboard, raids, battles, game economy"
+	},
+	"LandingPage": {
+		"hero_title_discover": "Reveal",
+		"hero_title_reason": "the reason",
+		"hero_title_behind": "for the desolation of an entire city",
+		"hero_description": "Immerse yourself in the dark atmosphere of the online Idle RPG game, where you have to find out why the once prosperous city of Leninsk turned out to be empty and abandoned.",
+		"button_in_development": "In development",
+		"section_storyline_title": "Plot",
+		"section_storyline_description": "Dive into the game's deep story as you uncover the secrets and mysteries of the abandoned city. Each piece of history you discover adds new layers to the overall picture.",
+		"section_fights_title": "Unique battles",
+		"section_fights_description": "Gear up and head out on raids where you can face off against locals and other players in automated combat.",
+		"section_characters_title": "Character development",
+		"section_characters_description": "Improve your skills and become stronger with each level. Your choice of equipment and strategy will significantly affect the outcome of raids.",
+		"section_economy_title": "Game Economy",
+		"section_economy_description": "You will be able to find items and trade them. But remember that the game world is changeable and goods can change their value, leading to price changes or shortages."
+	},
+	"LoginRegisterPage": {
+		"register_title": "Register",
+		"login_title": "Login",
+		"submit_button": "Login",
+		"reset_button": "Reset",
+		"register_button": "Register",
+		"google_register_button": "Sign up with Google",
+		"discord_register_button": "Sign up with Discord",
+		"email_label": "Email",
+		"email_placeholder": "Enter your email",
+		"password_label": "Password",
+		"password_placeholder": "Enter your password",
+		"username_label": "Username",
+		"username_placeholder": "Enter your username",
+		"EMAIL_MISSING": "Email is required",
+		"EMAIL_INVALID": "Invalid email",
+		"FILL_ALL_FIELDS": "Fill in all fields",
+		"PASSWORD_SHORT": "Password must be at least 4 characters long",
+		"PASSWORD_NO_UPPERCASE": "Password must contain at least one uppercase letter",
+		"LOGIN_BAD_CREDENTIALS": "Incorrect email or password",
+		"REGISTER_USER_ALREADY_EXISTS": "A user with this email address already exists",
+		"NO_TOKEN": "Token was not received",
+		"REGISTER_SUCCESS": "Successfully registered!",
+		"USERNAME_INCORRECT": "Username must be 3-16 characters",
+		"OR": "OR",
+		"REQUEST_ERROR": "Request error"
+	},
+	"AuthCallbackPage": {
+		"authenticating": "Authenticating...",
+		"AUTHENTICATION_ERROR": "Authentication error"
+	},
+	"NotFoundPage": {
+		"not_found_title": "Page not found",
+		"not_found_description": "You seem to be lost. Try returning to the main page."
+	}
+}
