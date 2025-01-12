@@ -28,8 +28,8 @@ This project is a web application built with FastAPI and Next.js. It features lo
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/cryptic-project.git
-cd cryptic-project
+git clone https://github.com/Maystra/fastapi-nextjs-template.git
+cd fastapi-nextjs-template
 ```
 
 2. Create a .env file in the backend and frontend directories with the necessary environment variables.
@@ -55,4 +55,7 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```
 
 3. Build and start the Docker containers:
-4. Open your browser and navigate to http://localhost:3000 for the frontend and http://localhost:8000 for the backend API.
+```
+docker compose up -d
+```
+5. Open your browser and navigate to http://localhost:3000 for the frontend and http://localhost:8000 for the backend API.
