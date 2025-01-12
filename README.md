@@ -1,6 +1,7 @@
 # FastAPI + Next.js project template
 
 This project is a template web application built with FastAPI and Next.js that have all essentials for non-commercial project. It doesn't pretent to be the best way to create web applications, but just my preferred way to go :)
+
 It features localization, authorization, OAuth2, database migrations with Alembic, and a modern UI using NextUI. The project also leverages TanStack Query for data fetching and Zustand for state management. The application is containerized using Docker and Docker Compose for easy deployment.
 
 ## Features
@@ -76,4 +77,5 @@ docker compose up -f docker-compose.dev.yml -d
 - SSH_HOST - IP of remote server where your app will be running.
 - SSH_USER - username for logging in to remote server.
 - SSH_PASSWORD - password for logging in to remote server.
+
 If you want CI/CD for both dev and prod stands you should place 2 folders in /root folder with names {REPOSITORY_NAME} and {REPOSITORY_NAME}_dev so CI/CD finds it automatically. You can also change folders manually in workflows configuration.
