@@ -15,6 +15,9 @@ This project is a web application built with FastAPI and Next.js. It features lo
 - **Zustand**: A small, fast, and scalable state management solution for React.
 - **Docker**: Containerization for consistent development and deployment environments.
 - **Docker Compose**: Simplifies multi-container Docker applications.
+- **Traefik**: Allows to make application public on Internet, handles TLS and IP whitelist for dev stand.
+- **Dozzle**: Provides logs for all deployed docker containers.
+- **GitHub Actions**: Allows to deploy prod (attached to main branch) and dev (attached to dev branch) stands to remote server automatically on commits.
 
 ## Getting Started
 
@@ -29,6 +32,8 @@ This project is a web application built with FastAPI and Next.js. It features lo
 
 ```sh
 git clone https://github.com/Maystra/fastapi-nextjs-template.git
+```
+```sh
 cd fastapi-nextjs-template
 ```
 
@@ -53,9 +58,20 @@ FRONTEND_URL=http://localhost:3000
 ```
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```
+3. Configure domains (for backend and frontend) in docker compose files. You will also need to add entry in your DNS to link domain to your remote server.
 
-3. Build and start the Docker containers:
+3. Build and start the Docker Compose containers:
+-Prod stand:
 ```
-docker compose up -d
+docker compose up -f docker-compose.yml -d
+```
+-Dev stand:
+```
+docker compose up -f docker-compose.dev.yml -d
 ```
 5. Open your browser and navigate to http://localhost:3000 for the frontend and http://localhost:8000 for the backend API.
+6. (Optional) If you will need GitHub Actions, you should configure Variables and secrets and provide:
+- SSH_HOST - IP of remote server where your app will be running.
+- SSH_USER - username for logging in to remote server.
+- SSH_PASSWORD - password for logging in to remote server.
+If you want CI/CD for both dev and prod stands you should place 2 folders in /root folder with names {REPOSITORY_NAME} and {REPOSITORY_NAME}_dev so CI/CD finds it automatically. You can also change folders manually in workflows configuration.
