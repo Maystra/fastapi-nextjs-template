@@ -1,6 +1,6 @@
 # FastAPI + Next.js project template
 
-This project is a template web application built with FastAPI and Next.js that have all essentials for non-commercial project. It doesn't pretent to be the best way to create web applications, but just my preferred way to go :)
+This project is a template web application (suited for small hobby/startup project) built with FastAPI and Next.js that have all essentials for non-commercial project. It doesn't pretent to be the best way to create web applications, but just my preferred way to go :)
 
 It features localization, authorization, OAuth2, database migrations with Alembic, and a modern UI using NextUI. The project also leverages TanStack Query for data fetching and Zustand for state management. The application is containerized using Docker and Docker Compose for easy deployment.
 
@@ -64,11 +64,11 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 
 4. Build and start the Docker Compose containers:
 
--Prod stand:
+- Prod stand:
 ```
 docker compose up -f docker-compose.yml -d
 ```
--Dev stand:
+- Dev stand:
 ```
 docker compose up -f docker-compose.dev.yml -d
 ```
